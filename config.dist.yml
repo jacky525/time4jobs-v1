@@ -1,0 +1,22 @@
+prod: &prod
+  publicPath: //www.104.com.tw
+  my104Path: //pda.104.com.tw
+  mobilePath: //m.104.com.tw
+
+staging: &staging
+  <<: *prod
+  publicPath: //www.104.com.tw
+  my104Path: //pda.104.com.tw
+  mobilePath: //m.104.com.tw
+
+lab: &lab
+  <<: *staging
+  publicPath: //www.s104.com.tw
+  my104Path: //pda.s104.com.tw
+  mobilePath: //m.s104.com.tw
+
+dev:
+  <<: *lab
+  publicPath: //www.s104.com.tw
+  my104Path: //pda.s104.com.tw
+  mobilePath: //m.s104.com.tw

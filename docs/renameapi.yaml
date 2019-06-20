@@ -1,0 +1,163 @@
+swagger: '2.0'
+info:
+  description: >-
+    API位址: <br>LAB: http://wsp-jb.s104.com.tw/jb/cmember_api/index.php
+    <br>STAGING: http://wsp-jb.104.com.tw/jb/cmember_api/index.php <br>PROD:
+    http://wsp-jb.104.com.tw/jb/cmember_api/index.php 
+  version: 0.1.0
+  title: 改姓名API
+  termsOfService: 'http://wsp-jb.104.com.tw/jb/cmember_api/index.php'
+  contact:
+    email: leon.chen@104.com.tw
+host: wsp-jb.104.com.tw
+basePath: /v1
+tags:
+  - name: rename
+    description: .
+    externalDocs:
+      description: Find out more
+      url: 'http://swagger.io'
+schemes:
+  - http
+paths:
+  '/rename/get/{idNo}':
+    get:
+      tags:
+        - rename
+      summary: 取得改姓名資訊
+      description: >-
+        Sample:<br>
+        http://wsp-jb.s104.com.tw/jb/cmember_api/index.php/rename/get/20000000010499
+      operationId: get
+      produces:
+        - application/json
+      parameters:
+        - name: idNo
+          in: path
+          description: 輸入idNo
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: >-
+            成功回應 <br> data['count']: 己修改次數(超過3次不可改姓名) <br> data['disable']:
+            改姓名鎖定(己送出改姓名並且審核中) 
+          schema:
+            $ref: '#/definitions/RenameGet'
+        '400':
+          description: '失敗回應:  <br> idNo資料驗證錯誤'
+          schema:
+            $ref: '#/definitions/RenameGetErr'
+  /rename/set/:
+    post:
+      tags:
+        - rename
+      summary: 寫入改姓名log
+      description: >-
+        Sample:<br>
+        http://wsp-jb.s104.com.tw/jb/cmember_api/index.php/rename/set/
+      operationId: set
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: idNo
+          in: formData
+          description: 輸入idNo
+          required: true
+          type: integer
+          format: int64
+        - name: clientIp
+          in: formData
+          description: 輸入User IP
+          required: true
+          type: string
+        - name: familyNameOld
+          in: formData
+          description: 輸入舊姓名(姓)
+          required: true
+          type: string
+        - name: firstNameOld
+          in: formData
+          description: 輸入舊姓名(名)(AES)
+          required: true
+          type: string
+        - name: familyNameNew
+          in: formData
+          description: 輸入新姓名(姓)
+          required: true
+          type: string
+        - name: firstNameNew
+          in: formData
+          description: 輸入新姓名(名)(AES)
+          required: true
+          type: string
+      responses:
+        '200':
+          description: 成功回應
+          schema:
+            $ref: '#/definitions/RenamePost'
+        '400':
+          description: '失敗回應: 改姓名功能己鎖定'
+          schema:
+            $ref: '#/definitions/RenamePostErr'
+definitions:
+  RenameGet:
+    type: object
+    properties:
+      success:
+        type: string
+        example: 'true'
+      data:
+        type: array
+        items:
+          properties:
+            count:
+              type: integer
+            disable:
+              type: string
+              example: 'false'
+      error:
+        type: string
+        example: ''
+  RenameGetErr:
+    type: object
+    properties:
+      success:
+        type: string
+        example: 'false'
+      data:
+        type: string
+        example: ''
+      error:
+        type: string
+        example: 資料驗證錯誤
+  RenamePost:
+    type: object
+    properties:
+      success:
+        type: string
+        example: 'true'
+      data:
+        type: string
+        example: ''
+      error:
+        type: string
+        example: ''
+  RenamePostErr:
+    type: object
+    properties:
+      success:
+        type: string
+        example: 'false'
+      data:
+        type: string
+        example: ''
+      error:
+        type: string
+        example: 改姓名功能己鎖定
+externalDocs:
+  description: Find out more about Swagger
+  url: 'http://swagger.io'
