@@ -1,21 +1,13 @@
 <?php
 
 use DI\ContainerBuilder;
+use \Noodlehaus\Config;
 
 define('APP_ROOT', dirname(dirname(__FILE__)));
 require APP_ROOT . '/vendor/autoload.php';
 
-define('BASE_PATH', dirname(__DIR__));
-
-
 // Load "Environments" files.
-$envSettings = \Noodlehaus\Config::load(BASE_PATH . '/env.php');
-
-// Timezone.
-date_default_timezone_set($envSettings->get('TIMEZONE', 'UTC'));
-// Encoding.
-mb_internal_encoding('UTF-8');
-
+$envSettings = Config::load(APP_ROOT . '/env.php');
 
 
 //When you deploy new versions of your code to production you must delete the generated file
@@ -51,6 +43,6 @@ foreach ($connections as $connectionName => $setting) {
 $capsule->setAsGlobal();
 $capsule->bootEloquent();
 
-require BASE_PATH . '/route/route.php';
+require APP_ROOT . '/routes/route.php';
 // Run!
 $app->run();

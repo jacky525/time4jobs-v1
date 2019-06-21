@@ -10,8 +10,8 @@
 		"swiftmailer/swiftmailer": "^6.0",
 		"illuminate/database": "~5.1",
 		"php-di/slim-bridge": "^2.0",
-		"snicholson/slimfilecache": "^1.0",
-		"104corp/jblog": "^0.10"
+		"104corp/jblog": "^0.10",
+		"symfony/cache": "^3.4"
 	},
     "require-dev": {
 		"codeception/codeception": "^2.2",

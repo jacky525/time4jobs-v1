@@ -3,7 +3,7 @@
 return [
     // App.
     'APP_DEBUG' => true, // set to false in production.
-    'APP_ROUTER_CACHE_FILE' => BASE_PATH . '/cache/routes/routes.cache',
+    'APP_ROUTER_CACHE_FILE' => APP_ROOT . '/cache/routes/routes.cache',
     'APP_ROUTER_CACHE_FILE' => false, // comment this in production.
     'APP_ENV' => 'dev', // set to 'prod' in production
     'APP_KEY' => '',

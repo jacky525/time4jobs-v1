@@ -1,23 +1,27 @@
 <?php
-
+use \Psr\Container\ContainerInterface;
 use Noodlehaus\Config;
+use Psr\SimpleCache\CacheInterface;
+use Symfony\Component\Cache\Simple\FilesystemCache;
+use Symfony\Component\Cache\Simple\ApcuCache;
+use Symfony\Contracts\Cache\ItemInterface;
 
-$envSettings = \Noodlehaus\Config::load(BASE_PATH . '/env.php');
+$envSettings = Config::load(APP_ROOT . '/env.php');
 $isDebug = $envSettings->get('APP_DEBUG', 'true');
 
 //Configuring PHP-DI
 
 $default = [
-    'config' => DI\create(\Noodlehaus\Config::class)->constructor(APP_ROOT . '/config'),
+    'config' => DI\create(Config::class)->constructor(APP_ROOT . '/config'),
     'settings.displayErrorDetails' => $isDebug,
-    'settings.routerCacheFile' => function (\Psr\Container\ContainerInterface $c) {
+    'settings.routerCacheFile' => function (ContainerInterface $c) {
         $config = $c->get('config');
         return $config->get('cache.path.router');
     },
     'settings.responseChunkSize' => 4096,
     'settings.outputBuffering' => 'append',
     'settings.determineRouteBeforeAppMiddleware' => false,
-    \Slim\Views\Twig::class => function (\Psr\Container\ContainerInterface $c) {
+    \Slim\Views\Twig::class => function (ContainerInterface $c) {
         $twig = new \Slim\Views\Twig(APP_ROOT .'/app/templates', [
             'cache' => APP_ROOT .'/cache'
         ]);
@@ -29,18 +33,13 @@ $default = [
 
         return $twig;
     },
-    'TestController' => function (\Psr\Container\ContainerInterface $container) {
+    'TestController' => function (ContainerInterface $container) {
         return new Slim\Controllers\TestController();
     },
-    'MainController' => function (\Psr\Container\ContainerInterface $container) {
+    'MainController' => function (ContainerInterface $container) {
         return new Slim\Controllers\MainController($container);
     },
-    'FileCache' => function (\Psr\Container\ContainerInterface $container) {
-        $slim = new \DI\Bridge\Slim\App;
-        $cache =  new \SNicholson\SlimFileCache\Cache( $slim,APP_ROOT .'/cache');
-        return $cache;
-    },
-    'logger' => function (\Psr\Container\ContainerInterface $container) {
+    'logger' => function (ContainerInterface $container) {
         $filePath = APP_ROOT .'/log/'; //指定目錄
         // JBMLog in file
         $jbHandler = new \Corp104\Common\Logger\JBLog\JBMLogHandler();
@@ -60,6 +59,13 @@ $default = [
         $logger->pushHandler($jbHandler);
 
         return $logger;
+    },
+    ApcuCache::class => function (ContainerInterface$container) {
+        return new ApcuCache('',0);
+    },
+    FilesystemCache::class => function (ContainerInterface $container) {
+        $config = $container->get('config');
+        return new FilesystemCache('', 0, $config->get('cache.path.filesystemCache'));
     },
 ];
 

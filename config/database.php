@@ -1,6 +1,6 @@
 <?php
 
-$envSettings = \Noodlehaus\Config::load(BASE_PATH . '/env.php');
+$envSettings = \Noodlehaus\Config::load(APP_ROOT . '/env.php');
 
 return [
     "database" =>[
