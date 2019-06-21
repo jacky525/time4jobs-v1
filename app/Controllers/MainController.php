@@ -5,6 +5,7 @@ use Symfony\Component\Cache\Simple\ApcuCache;
 
 /**
  * Class MainController
+ *
  * @package Slim\Controllers
  */
 class MainController
@@ -19,6 +20,7 @@ class MainController
     private $testService;
     /**
      * MainController constructor.
+     *
      * @param ContainerInterface $container
      */
     public function __construct(\Psr\Container\ContainerInterface $container)
@@ -42,7 +44,7 @@ class MainController
         $psid='str11';
         if (!$cache->has($psid)) {
             $result = $this->testService->getResult();
-            $cache->set($psid,$result,$ttl);
+            $cache->set($psid, $result, $ttl);
 
         } else {
             $result = $cache->get($psid);

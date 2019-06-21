@@ -22,14 +22,18 @@ $default = [
     'settings.outputBuffering' => 'append',
     'settings.determineRouteBeforeAppMiddleware' => false,
     \Slim\Views\Twig::class => function (ContainerInterface $c) {
-        $twig = new \Slim\Views\Twig(APP_ROOT .'/app/templates', [
+        $twig = new \Slim\Views\Twig(
+            APP_ROOT .'/app/templates', [
             'cache' => APP_ROOT .'/cache'
-        ]);
+            ]
+        );
 
-        $twig->addExtension(new \Slim\Views\TwigExtension(
-            $c->get('router'),
-            $c->get('request')->getUri()
-        ));
+        $twig->addExtension(
+            new \Slim\Views\TwigExtension(
+                $c->get('router'),
+                $c->get('request')->getUri()
+            )
+        );
 
         return $twig;
     },
@@ -46,14 +50,14 @@ $default = [
         $jbHandler->setCustomLogPath($filePath);
 
         // mail  lab: oms02.e104.com.tw
-//        $jbHandler = new \Corp104\Common\Logger\JBLog\JBMLogMailHandler([
-//            'host' => 'oms02.e104.com.tw',
-//            'port' => 25,
-//            'mailTo' => [
-//                'jbcpg@104.com.tw',
-//            ],
-//        ]);
-//        $jbHandler->addMailTo("jacky.lin@104.com.tw");
+        //        $jbHandler = new \Corp104\Common\Logger\JBLog\JBMLogMailHandler([
+        //            'host' => 'oms02.e104.com.tw',
+        //            'port' => 25,
+        //            'mailTo' => [
+        //                'jbcpg@104.com.tw',
+        //            ],
+        //        ]);
+        //        $jbHandler->addMailTo("jacky.lin@104.com.tw");
 
         $logger = new \Monolog\Logger('logger');
         $logger->pushHandler($jbHandler);
@@ -61,7 +65,7 @@ $default = [
         return $logger;
     },
     ApcuCache::class => function (ContainerInterface$container) {
-        return new ApcuCache('',0);
+        return new ApcuCache('', 0);
     },
     FilesystemCache::class => function (ContainerInterface $container) {
         $config = $container->get('config');

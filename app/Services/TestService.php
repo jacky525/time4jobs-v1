@@ -3,6 +3,7 @@ namespace Slim\Services;
 
 /**
  * Class TestService
+ *
  * @package Slim\Services
  */
 class TestService

@@ -1,10 +1,4 @@
 <?php
-/**
- * cache 相關
- *
- * @author kaihan
- * @date   2017-08-18
- */
 
 return [
     'cache' => [

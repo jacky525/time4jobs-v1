@@ -7,6 +7,7 @@ use Interop\Container\ContainerInterface;
 
 /**
  * Class TestController
+ *
  * @package Slim\Controllers
  */
 class TestController
@@ -22,7 +23,8 @@ class TestController
     /**
      *
      */
-    public function __invoke(){
+    public function __invoke()
+    {
         echo "hello world";
     }
 }
