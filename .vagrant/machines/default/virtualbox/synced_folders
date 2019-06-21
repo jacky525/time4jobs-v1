@@ -1,1 +1,0 @@
-{"virtualbox":{"/var/www/html/jobs/slim":{"owner":"vagrant","group":"vagrant","mount_options":["dmode=777,fmode=777","uid=1000","gid=1000"],"guestpath":"/var/www/html/jobs/slim","hostpath":"/Users/jacky.lin/web/slim0610","disabled":false,"__vagrantfile":true}}}
