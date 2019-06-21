@@ -19,24 +19,24 @@ $app->get('/hello', 'TestController');
  */
 // method 3 Service and Request or response injection
 $app->get('/', function ($response, Twig $twig, ContainerInterface $container) {
-    $cache = $container->get(ApcuCache::class);
+    $apcucache = $container->get(ApcuCache::class);
 
-    if (!$cache->has('my_cache_key')) {
-        $cache->set('my_cache_key','foobar',10);
+    if (!$apcucache->has('my_cache_key')) {
+        $apcucache->set('my_cache_key','foobar',10);
     } else {
-        $value = $cache->get('my_cache_key');
+        $my_apcucache_value = $apcucache->get('my_cache_key');
     }
-    echo $value;
+    echo $my_apcucache_value;
     echo "<br>=======<br>";
 
-    $cache1 = $container->get(FilesystemCache::class);
+    $filecache = $container->get(FilesystemCache::class);
 
-    if (!$cache1->has('my_cache_key')) {
-        $cache1->set('my_cache_key','foobar',10);
+    if (!$filecache->has('my_cache_key')) {
+        $filecache->set('my_cache_key','foobar',10);
     } else {
-        $value1 = $cache1->get('my_cache_key');
+        $my_filecache_value = $filecache->get('my_cache_key');
     }
-    echo $value1;
+    echo $my_filecache_value;
 
 
 //    $logger=$c->get('logger');
