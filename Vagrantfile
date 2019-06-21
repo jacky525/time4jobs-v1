@@ -1,6 +1,6 @@
 Vagrant.configure("2") do |config|
     config.vm.box = "ubuntu/xenial64"
-    config.vm.network "forwarded_port", guest: 80, host: 8020
+    config.vm.network "forwarded_port", guest: 80, host: 8010
     config.vm.synced_folder ".", "/var/www/html/jobs/slim",
         :owner => "vagrant", :group => "vagrant",
         :mount_options => ["dmode=777,fmode=777"]
