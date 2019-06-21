@@ -39,7 +39,7 @@ Vagrant.configure("2") do |config|
 
   sudo rm /etc/apache2/apache2.conf
   sudo cp /var/www/html/jobs/slim/scripts/apache2.conf /etc/apache2/
-  sudo cp /var/www/html/jobs/slim/scripts/slim.conf /etc/apache2/sites-available
+  sudo cp /var/www/html/jobs/slim/scripts/slim.conf /etc/apache2/sites-enabled
   sudo a2ensite slim.conf
   sudo a2dissite 000-default.conf
   sudo a2enmod rewrite
