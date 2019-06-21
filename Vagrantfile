@@ -38,8 +38,8 @@ Vagrant.configure("2") do |config|
   # 2. Use .conf to setup
 
   sudo rm /etc/apache2/apache2.conf
-  sudo cp /var/www/html/jobs/slim/devConfig/apache2.conf /etc/apache2/
-  sudo cp /var/www/html/jobs/slim/devConfig/slim.conf /etc/apache2/sites-available
+  sudo cp /var/www/html/jobs/slim/scripts/apache2.conf /etc/apache2/
+  sudo cp /var/www/html/jobs/slim/scripts/slim.conf /etc/apache2/sites-available
   sudo a2ensite slim.conf
   sudo a2dissite 000-default.conf
   sudo a2enmod rewrite
