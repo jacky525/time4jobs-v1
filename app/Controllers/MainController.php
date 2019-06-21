@@ -1,6 +1,8 @@
 <?php
 namespace Slim\Controllers;
 use \Slim\Services\TestService;
+use Symfony\Component\Cache\Simple\ApcuCache;
+
 /**
  * Class MainController
  * @package Slim\Controllers
@@ -11,6 +13,9 @@ class MainController
      * @var ContainerInterface
      */
     protected $container;
+    /**
+     * @var TestService
+     */
     private $testService;
     /**
      * MainController constructor.
@@ -30,16 +35,20 @@ class MainController
      */
     public function hello($name , $request, $response )
     {
-        // cache key must be string
-        $psid='test11';
+        $cache=$this->container->get(ApcuCache::class);
+        $ttl = $this->container->get('config')->get('cache.TestService.ttl');
 
-        $result = $this->testService->iscached($psid,$this->container);
-        if(empty($result))
-        {
+        // cache key must be string
+        $psid='str11';
+        if (!$cache->has($psid)) {
             $result = $this->testService->getResult();
-            $this->testService->cache($psid,$result,$this->container);
+            $cache->set($psid,$result,$ttl);
+
+        } else {
+            $result = $cache->get($psid);
         }
-        $response->getBody()->write("Hello, $name  $result");
+
+        $response->getBody()->write("Hello, $name  <br> $result");
         return $response;
     }
 

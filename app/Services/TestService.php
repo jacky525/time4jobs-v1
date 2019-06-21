@@ -5,7 +5,7 @@ namespace Slim\Services;
  * Class TestService
  * @package Slim\Services
  */
-class TestService extends ServiceCache
+class TestService
 {
 
     /**
@@ -13,6 +13,6 @@ class TestService extends ServiceCache
      */
     public function getResult()
     {
-        return "no cache";
+        return "TestService result";
     }
 }
