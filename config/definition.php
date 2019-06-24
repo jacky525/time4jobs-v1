@@ -23,7 +23,8 @@ $default = [
     'settings.determineRouteBeforeAppMiddleware' => false,
     \Slim\Views\Twig::class => function (ContainerInterface $c) {
         $twig = new \Slim\Views\Twig(
-            APP_ROOT .'/app/templates', [
+            APP_ROOT .'/app/templates',
+            [
             'cache' => APP_ROOT .'/cache'
             ]
         );

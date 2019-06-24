@@ -19,7 +19,8 @@ $app->get('/hello', 'TestController');
  */
 // method 3 Service and Request or response injection
 $app->get(
-    '/', function ($response, Twig $twig, ContainerInterface $container) {
+    '/',
+    function ($response, Twig $twig, ContainerInterface $container) {
         $apcucache = $container->get(ApcuCache::class);
 
         if (!$apcucache->has('my_cache_key')) {
