@@ -1,9 +1,8 @@
 <?php
-// 參照 https://codeception.com/docs/05-UnitTests
-
 use Psr\Container\ContainerInterface;
 use \Slim\Controllers\TestController;
 
+// 參照 https://codeception.com/docs/05-UnitTests
 /**
  * Class ExampleTest
  */
@@ -48,7 +47,7 @@ class ExampleTest extends \Codeception\Test\Unit
     public function testSomeFeature()
     {
         $excepted = "hello";
-        $this->assertEquals(1,1);
+        $this->assertEquals(1, 1);
         $this->assertEquals($excepted, $this->target->hello());
     }
 }

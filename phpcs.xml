@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <ruleset>
     <!-- display progress and sniff -->
-    <arg value="n"/>
     <arg value="p"/>
     <arg value="s"/>
 
@@ -9,7 +8,17 @@
     <arg name="colors"/>
 
     <!-- inherit rules from: -->
-    <rule ref="PSR2"/>
+    <rule ref="PSR2">
+        <exclude name="Generic.Files.LineLength"/>
+    </rule>
+    <rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
+    <rule ref="PSR2.Methods.MethodDeclaration.Underscore">
+        <severity>0</severity>
+    </rule>
+    <!-- specific and just exclude rules in some file -->
+    <rule ref="PSR1.Classes.ClassDeclaration.MissingNamespace">
+        <exclude-pattern>tests/*</exclude-pattern>
+    </rule>
 
     <!-- Paths and file to check -->
     <file>app</file>
@@ -19,6 +28,7 @@
     <file>routes</file>
     <file>tests</file>
 
+    <exclude-pattern>bootstrap/app.php</exclude-pattern>
     <exclude-pattern>tests/_data</exclude-pattern>
     <exclude-pattern>tests/_output</exclude-pattern>
     <exclude-pattern>tests/_support</exclude-pattern>

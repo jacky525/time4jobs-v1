@@ -1,7 +1,6 @@
 <?php
 
 use \DI\ContainerBuilder;
-use \Noodlehaus\Config;
 use Symfony\Component\Dotenv\Dotenv;
 
 define('APP_ROOT', dirname(dirname(__FILE__)));

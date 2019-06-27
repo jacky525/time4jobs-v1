@@ -1,15 +1,26 @@
 <?php
-// 參照 https://codeception.com/docs/10-WebServices#REST
 use Codeception\Util\HttpCode;
 
+// 參照 https://codeception.com/docs/10-WebServices#REST
+
+/**
+ * Class UserCest
+ */
 class UserCest
 {
 
+    /**
+     * @param ApiTester $I
+     */
     public function _before(ApiTester $I)
     {
     }
 
     // tests
+
+    /**
+     * @param ApiTester $I
+     */
     public function tryToTest(ApiTester $I)
     {
         $excepted = "hello";
@@ -22,5 +33,4 @@ class UserCest
         $I->seeResponseCodeIs(HttpCode::OK);
         $I->seeResponseContains('{"id":"aaa"}');
     }
-
 }
