@@ -29,7 +29,7 @@ $ composer require 104corp/jblog
 ```
 make
 ```
-* url： http://localhost:8030/jobs/slim/
+* url： http://localhost:8010/
 
 #### makefile list
 ```
