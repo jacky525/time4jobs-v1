@@ -12,3 +12,9 @@ if (! function_exists('base_path')) {
         return dirname(dirname(__DIR__)).($path ? DIRECTORY_SEPARATOR.$path : $path);
     }
 }
+
+function application_settings()
+{
+    $envSettings = \Noodlehaus\Config::load(APP_ROOT . '/env.php');
+    return $envSettings;
+}

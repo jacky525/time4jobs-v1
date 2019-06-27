@@ -3,8 +3,8 @@
 return [
     'cache' => [
         'path' => [
-            'router' => dirname(__DIR__) . '/cache/routes.php',
-            'filesystemCache' => dirname(__DIR__) . '/cache/symfony-cache',
+            'router' => APP_ROOT . '/cache/routes.php',
+            'filesystemCache' => APP_ROOT . '/cache/symfony-cache',
         ],
         /*
          * class name => cache key => cache time (sec)

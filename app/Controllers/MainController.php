@@ -1,8 +1,8 @@
 <?php
 namespace Slim\Controllers;
 
+use Psr\SimpleCache\CacheInterface;
 use \Slim\Services\TestService;
-use Symfony\Component\Cache\Simple\ApcuCache;
 
 /**
  * Class MainController
@@ -38,7 +38,7 @@ class MainController
      */
     public function hello($name, $request, $response)
     {
-        $cache=$this->container->get(ApcuCache::class);
+        $cache=$this->container->get(CacheInterface::class);
         $ttl = $this->container->get('config')->get('cache.TestService.ttl');
 
         // cache key must be string

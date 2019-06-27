@@ -17,7 +17,6 @@ class TestController
      */
     public function __construct()
     {
-        echo 'i\'m in test controll<br>';
     }
 
     /**
@@ -26,5 +25,10 @@ class TestController
     public function __invoke()
     {
         echo "hello world";
+    }
+
+    public function hello():string
+    {
+        return "hello";
     }
 }

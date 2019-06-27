@@ -6,14 +6,11 @@ use Symfony\Component\Cache\Simple\FilesystemCache;
 use Symfony\Component\Cache\Simple\ApcuCache;
 use Symfony\Contracts\Cache\ItemInterface;
 
-$envSettings = Config::load(APP_ROOT . '/env.php');
-$isDebug = $envSettings->get('APP_DEBUG', 'true');
-
 //Configuring PHP-DI
 
 $default = [
     'config' => DI\create(Config::class)->constructor(APP_ROOT . '/config'),
-    'settings.displayErrorDetails' => $isDebug,
+    'settings.displayErrorDetails' => getenv('APP_DEBUG'),
     'settings.routerCacheFile' => function (ContainerInterface $c) {
         $config = $c->get('config');
         return $config->get('cache.path.router');
@@ -65,7 +62,11 @@ $default = [
 
         return $logger;
     },
-    ApcuCache::class => function (ContainerInterface$container) {
+    // cache
+    CacheInterface::class => function (ContainerInterface $container) {
+        return $container->get(ApcuCache::class);
+    },
+    ApcuCache::class => function (ContainerInterface $container) {
         return new ApcuCache('', 0);
     },
     FilesystemCache::class => function (ContainerInterface $container) {

@@ -24,10 +24,22 @@ Vagrant up && vagrant ssh
 $ composer require 104corp/jblog
 ```
 
-#### run composer install/update
+#### make for build 
+
 ```
-cd /var/www/html/jobs/search/ 
-composer update   
+make
+```
+* url： http://localhost:8030/jobs/slim/
+
+#### makefile list
+```
+make list
+``` 
+
+#### test 
+
+```
+make tests
 ```
 
 #### change root
