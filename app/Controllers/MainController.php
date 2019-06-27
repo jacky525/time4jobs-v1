@@ -5,6 +5,9 @@ use Psr\SimpleCache\CacheInterface;
 use \Slim\Services\TestService;
 
 /**
+ * @OA\Info(title="My First API", version="0.1")
+ */
+/**
  * Class MainController
  *
  * @package Slim\Controllers
@@ -29,7 +32,18 @@ class MainController
         $this->container = $container;
         $this->testService = new TestService();
     }
-
+    /**
+     * @OA\Get(
+     *     path="/hello/{name}",
+     *     summary="取得 name",
+     *     description="這不是個api介面,這個返回一個頁面",
+     *     @OA\Parameter(name="userId", in="query", @OA\Schema(type="string"), required=true, description="使用者ID"),
+     *     @OA\Response(
+     *      response="200",
+     *      description="An example resource"
+     *     )
+     * )
+     */
     /**
      * @param $name
      * @param $request

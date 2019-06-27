@@ -1,0 +1,20 @@
+openapi: 3.0.0
+info:
+  title: 'My First API'
+  version: '0.1'
+paths:
+  '/hello/{name}':
+    get:
+      summary: '取得 name'
+      description: '這不是個api介面,這個返回一個頁面'
+      parameters:
+        -
+          name: userId
+          in: query
+          description: 使用者ID
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'An example resource'

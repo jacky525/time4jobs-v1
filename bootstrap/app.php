@@ -10,6 +10,7 @@ require APP_ROOT . '/vendor/autoload.php';
 $dotenv = new Dotenv();
 $dotenv->load(APP_ROOT.'/.env');
 
+
 //When you deploy new versions of your code to production you must delete the generated file
 //(or the directory that contains it) to ensure that the container is re-compiled.
 $app = new class() extends \DI\Bridge\Slim\App {

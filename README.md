@@ -42,6 +42,12 @@ make list
 make tests
 ```
 
+```
+make swagger
+``` 
+
+http://localhost:8010/swagger/index.html
+
 #### change root
 ```
 sudo -i  

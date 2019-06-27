@@ -1,5 +1,5 @@
 COMPOSER_BIN        := composer
-SWAGGER_FILE        := openapi.yaml
+SWAGGER_FILE        := public/swagger/openapi.yaml
 
 .PHONY: all build vendor tests deps_update
 
@@ -49,4 +49,3 @@ deps_update:
 
 swagger:
 	vendor/bin/openapi app/ --output ${SWAGGER_FILE}
-
