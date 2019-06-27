@@ -17,6 +17,10 @@
     <file>config</file>
     <file>public</file>
     <file>routes</file>
-    <file>env.php</file>
+    <file>tests</file>
+
+    <exclude-pattern>tests/_data</exclude-pattern>
+    <exclude-pattern>tests/_output</exclude-pattern>
+    <exclude-pattern>tests/_support</exclude-pattern>
 
 </ruleset>
