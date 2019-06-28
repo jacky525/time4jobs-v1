@@ -1,0 +1,87 @@
+sudo: required
+os: linux
+dist: trusty
+language: php
+php:
+  - '7.0'
+
+env:
+  global:
+    - PROJECT_NAME=104jbcp-private-api
+    - DEPLOY_BUCKET_BASE_NAME=jbcp-deploy
+
+    - DB_HOST=127.0.0.1
+    - DB_PORT=3306
+    - DB_USER=root
+    - DB_PASS=password
+
+    - DB_M001011_DATABASE=m001011
+    - DB_M003008_DATABASE=m003008
+    - DB_M005005_DATABASE=m005005
+    - DB_M005013_DATABASE=m005013
+    - DB_SB00005_DATABASE=sb00005
+    - DB_SB00010_DATABASE=sb00010
+    - DB_SB00013_DATABASE=sb00013
+    - DB_SB00015_DATABASE=sb00015
+    - DB_SB00023_DATABASE=sb00023
+    - DB_SB00026_DATABASE=sb00026
+
+    - DB_M001011_PORT_READ=${DB_PORT}
+    - DB_M001011_PORT_WRITE=${DB_PORT}
+    - DB_M003008_PORT_READ=${DB_PORT}
+    - DB_M003008_PORT_WRITE=${DB_PORT}
+    - DB_M005005_PORT_READ=${DB_PORT}
+    - DB_M005005_PORT_WRITE=${DB_PORT}
+    - DB_M005013_PORT_READ=${DB_PORT}
+    - DB_M005013_PORT_WRITE=${DB_PORT}
+    - DB_SB00005_PORT_READ=${DB_PORT}
+    - DB_SB00005_PORT_WRITE=${DB_PORT}
+    - DB_SB00010_PORT_READ=${DB_PORT}
+    - DB_SB00010_PORT_WRITE=${DB_PORT}
+    - DB_SB00013_PORT_READ=${DB_PORT}
+    - DB_SB00013_PORT_WRITE=${DB_PORT}
+    - DB_SB00015_PORT_READ=${DB_PORT}
+    - DB_SB00015_PORT_WRITE=${DB_PORT}
+    - DB_SB00023_PORT_READ=${DB_PORT}
+    - DB_SB00023_PORT_WRITE=${DB_PORT}
+    - DB_SB00026_PORT_READ=${DB_PORT}
+    - DB_SB00026_PORT_WRITE=${DB_PORT}
+
+    # queue
+    - REALTIME_INDEX_QUEUE_HOST=localhost
+    - REALTIME_INDEX_QUEUE_VHOST=/
+    - REALTIME_INDEX_QUEUE_USER=guest
+    - REALTIME_INDEX_QUEUE_PASSWORD=guest
+    - REALTIME_INDEX_QUEUE_PORT=5678
+
+    - MONGODB_HOST=127.0.0.1
+    - MONGODB_PORT=27017
+    - MONGODB_USERNAME=root
+    - MONGODB_PASSWORD=password
+
+    - MONGODB_MDB0d00001_PORT=${MONGODB_PORT}
+    - MONGODB_MDB0d00001_DATABASE=mdb0d00001
+
+    - S3_JBCP_DOC_BUCKET_BASE_NAME=jbcp-private-doc
+
+before_install:
+  # start web server
+  - php -S 0.0.0.0:8080 -t public&
+
+before_script:
+  - composer config -g github-oauth.github.com ${GITHUB_ACCESS_TOKEN}
+  - composer install
+  # seed database
+  - make seed
+
+script:
+  # run testing
+  - php vendor/bin/phpcs
+  - php vendor/bin/codecept run -f
+
+notifications:
+  email:
+    recipients:
+      - jacky.lin@104.com.tw
+    on_success: always
+    on_failure: always
