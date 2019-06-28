@@ -29,7 +29,7 @@ $ composer require 104corp/jblog
 ```
 make
 ```
-* url： http://localhost:8010/
+* url： http://localhost:8080/
 
 #### makefile list
 ```
@@ -48,7 +48,7 @@ make tests
 make swagger
 ``` 
 
-http://localhost:8010/swagger/index.html
+http://localhost:8080/swagger/index.html
 
 #### change root
 ```
