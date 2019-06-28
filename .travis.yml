@@ -9,6 +9,9 @@ env:
   global:
     - PROJECT_NAME=104jbcp-slim-test
 
+before_install:
+  # start web server
+  - php -S 0.0.0.0:8080 -t public&
 
 before_script:
   - composer config -g github-oauth.github.com ${GITHUB_ACCESS_TOKEN}

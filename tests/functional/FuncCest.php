@@ -26,6 +26,5 @@ class FuncCest
         // Assert
         $I->seeResponseCodeIs(HttpCode::OK);
         $I->canSee($this->target->hello());
-
     }
 }
