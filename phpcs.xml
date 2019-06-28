@@ -29,6 +29,7 @@
     <file>tests</file>
 
     <exclude-pattern>bootstrap/app.php</exclude-pattern>
+    <exclude-pattern>public/swagger</exclude-pattern>
     <exclude-pattern>tests/_data</exclude-pattern>
     <exclude-pattern>tests/_output</exclude-pattern>
     <exclude-pattern>tests/_support</exclude-pattern>
