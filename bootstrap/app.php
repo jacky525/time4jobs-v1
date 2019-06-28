@@ -3,7 +3,8 @@
 use \DI\ContainerBuilder;
 use Symfony\Component\Dotenv\Dotenv;
 
-define('APP_ROOT', dirname(dirname(__FILE__)));
+if (!defined('APP_ROOT')) define('APP_ROOT', dirname(dirname(__FILE__)));
+
 require APP_ROOT . '/vendor/autoload.php';
 
 // Load "Environments" files.

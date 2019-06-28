@@ -20,7 +20,7 @@ before_script:
 script:
   # run testing
   - php vendor/bin/phpcs
-  - php vendor/bin/codecept run unit
+  - php vendor/bin/codecept run -f
 
 notifications:
   email:

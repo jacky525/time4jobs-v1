@@ -16,7 +16,14 @@ class FuncCest
         $this->container = $I->getContainer();
         $this->target = $this->container->get('TestController');
     }
-
+    /**
+     *
+     */
+    protected function _after()
+    {
+        $this->container = null;
+        $this->target = null;
+    }
     // tests
     public function tryToTest(FunctionalTester $I)
     {
