@@ -71,8 +71,6 @@ before_install:
 before_script:
   - composer config -g github-oauth.github.com ${GITHUB_ACCESS_TOKEN}
   - composer install
-  # seed database
-  - make seed
 
 script:
   # run testing
