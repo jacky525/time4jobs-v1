@@ -29,6 +29,6 @@ class TestController
 
     public function hello():string
     {
-        return "hello";
+        return "hello world";
     }
 }

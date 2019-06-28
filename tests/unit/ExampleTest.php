@@ -46,7 +46,7 @@ class ExampleTest extends \Codeception\Test\Unit
      */
     public function testSomeFeature()
     {
-        $excepted = "hello";
+        $excepted = "hello world";
         $this->assertEquals(1, 1);
         $this->assertEquals($excepted, $this->target->hello());
     }
