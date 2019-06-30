@@ -37,7 +37,7 @@ class MainController
      *     path="/hello/{name}",
      *     summary="取得 name",
      *     description="這不是個api介面,這個返回一個頁面",
-     *     @OA\Parameter(name="userId", in="query", @OA\Schema(type="string"), required=true, description="使用者ID"),
+     *     @OA\Parameter(name="name", in="query", @OA\Schema(type="string"), required=true, description="使用者ID"),
      *     @OA\Response(
      *      response="200",
      *      description="An example resource"
