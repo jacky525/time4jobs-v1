@@ -39,7 +39,7 @@ cache:
 
 after_success:
   # export AWS_ACCESS_KEY_ID & AWS_SECRET_ACCESS_KEY by TRAVIS_BRANCH, default: dev
-  - export AWS_ACCESS_KEY_ID= ${AWS_ACCESS_KEY_ID}
+  - export AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
   - export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
   - export DEPLOY_BUCKET_NAME=${DEPLOY_BUCKET_BASE_NAME}
   - export DEPLOYMENT_TAG="dev"
@@ -59,6 +59,7 @@ before_deploy:
   - zip -r latest route app bootstrap config public routes scripts vendor .env
   - test -d myCodeDeploy || mkdir myCodeDeploy
   - mv latest.zip myCodeDeploy/latest.zip
+  - aws s3 cp myCodeDeploy/latest.zip s3://jtravis-codedeploy
 
 deploy:
   # dev
@@ -66,8 +67,7 @@ deploy:
     access_key_id: &aws_access_key ${AWS_ACCESS_KEY_ID}
     secret_access_key: &aws_secret_key ${AWS_SECRET_ACCESS_KEY}
     bucket: ${DEPLOY_BUCKET_NAME}
-    upload-dir: myCodeDeploy
-    local_dir: deploy
+    local_dir: myCodeDeploy
     skip_cleanup: true
     region: &region ap-southeast-1
     on:
@@ -78,8 +78,8 @@ deploy:
     secret_access_key: &aws_secret_key ${AWS_SECRET_ACCESS_KEY}
     bucket: ${DEPLOY_BUCKET_NAME}
     key: latest.zip
-    application: "${PROJECT_NAME}-dev"
-    deployment_group: master
+    application: "jtravis"
+    deployment_group: gdelopy
     region: ap-southeast-1
     on:
       branch: master
