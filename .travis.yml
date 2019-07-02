@@ -8,8 +8,12 @@ php:
 env:
   global:
     - PROJECT_NAME=104jbcp-slim-test
+    - DEPLOY_BUCKET_BASE_NAME=jtravis-codedeploy
 
 before_install:
+  # install awscli
+  - pip install --user awscli
+  - export PATH=$PATH:$HOME/.local/bin
   # start web server
   - php -S 0.0.0.0:8080 -t public&
 
@@ -28,3 +32,54 @@ notifications:
       - jacky.lin@104.com.tw
     on_success: always
     on_failure: always
+
+cache:
+  directories:
+    - vendor
+
+after_success:
+  # export AWS_ACCESS_KEY_ID & AWS_SECRET_ACCESS_KEY by TRAVIS_BRANCH, default: dev
+  - export AWS_ACCESS_KEY_ID= ${AWS_ACCESS_KEY_ID}
+  - export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+  - export DEPLOY_BUCKET_NAME=${DEPLOY_BUCKET_BASE_NAME}
+  - export DEPLOYMENT_TAG="dev"
+
+  # echo aws info
+  - echo "AWS_ACCESS_KEY_ID:" ${AWS_ACCESS_KEY_ID}
+
+  # echo tag info
+  - echo "DEPLOYMENT_TAG:" ${DEPLOYMENT_TAG}
+  - echo "DEPLOY_BUCKET_NAME:" ${DEPLOY_BUCKET_NAME}
+
+  # generate swagger.yaml
+  - make swagger
+
+before_deploy:
+  - composer install --no-dev --optimize-autoloader
+  - zip -r latest route app bootstrap config public routes scripts vendor .env
+  - test -d myCodeDeploy || mkdir myCodeDeploy
+  - mv latest.zip myCodeDeploy/latest.zip
+
+deploy:
+  # dev
+  - provider: s3
+    access_key_id: &aws_access_key ${AWS_ACCESS_KEY_ID}
+    secret_access_key: &aws_secret_key ${AWS_SECRET_ACCESS_KEY}
+    bucket: ${DEPLOY_BUCKET_NAME}
+    upload-dir: myCodeDeploy
+    local_dir: deploy
+    skip_cleanup: true
+    region: &region ap-southeast-1
+    on:
+      branch: master
+
+  - provider: codedeploy
+    access_key_id: &aws_access_key ${AWS_ACCESS_KEY_ID}
+    secret_access_key: &aws_secret_key ${AWS_SECRET_ACCESS_KEY}
+    bucket: ${DEPLOY_BUCKET_NAME}
+    key: latest.zip
+    application: "${PROJECT_NAME}-dev"
+    deployment_group: master
+    region: ap-southeast-1
+    on:
+      branch: master

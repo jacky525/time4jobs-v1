@@ -3,7 +3,7 @@ namespace Slim\Controllers;
 
 use Psr\SimpleCache\CacheInterface;
 use \Slim\Services\TestService;
-
+use Illuminate\Support\Collection;
 /**
  * @OA\Info(title="My First API", version="0.1")
  */
@@ -63,8 +63,10 @@ class MainController
         } else {
             $result = $cache->get($psid);
         }
+        $authors = Collection::make([1,2,3]);
+        $aaa = $authors->get(2);
+        $response->getBody()->write("Hello, $name  <br> $result $aaa");
 
-        $response->getBody()->write("Hello, $name  <br> $result");
         return $response;
     }
 }
