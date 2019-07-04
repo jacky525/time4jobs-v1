@@ -16,7 +16,6 @@
 		"symfony/dotenv": "^3.4"
 	},
     "require-dev": {
-		"codeception/codeception": "^2.5",
 		"squizlabs/php_codesniffer": "^2.8",
 		"internations/http-mock": "^0.10",
 		"phpunit/phpunit": "~4.0",
