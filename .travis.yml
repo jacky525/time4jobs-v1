@@ -56,7 +56,7 @@ after_success:
 
 before_deploy:
   - composer install --no-dev --optimize-autoloader
-  - zip -r latest route app bootstrap config public routes scripts vendor .env
+  - zip -r latest route app bootstrap config public routes scripts vendor .env .appspec.yml
   - test -d myCodeDeploy || mkdir myCodeDeploy
   - mv latest.zip myCodeDeploy/latest.zip
   - aws s3 cp myCodeDeploy/latest.zip s3://jtravis-codedeploy
