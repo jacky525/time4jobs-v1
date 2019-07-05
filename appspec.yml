@@ -2,7 +2,7 @@ version: 0.1
 os: linux
 files:
   - source: /
-    destination:  /var/www/htdocs/jobs/slim/
+    destination:  /var/www/html/jobs/slim/
 hooks:
   BeforeInstall:
     - location: scripts/codedeploy/beforeInstall.sh
