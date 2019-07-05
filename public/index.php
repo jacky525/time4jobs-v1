@@ -17,5 +17,5 @@ $capsule->setAsGlobal();
 $capsule->bootEloquent();
 
 require APP_ROOT . '/routes/route.php';
-// Run! Run!
+// Run!
 $app->run();
