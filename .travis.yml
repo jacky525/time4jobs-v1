@@ -79,7 +79,7 @@ deploy:
     bucket: ${DEPLOY_BUCKET_NAME}
     key: latest.zip
     application: "jtravis"
-    deployment_group: gdelopy
+    deployment_group: gdeploy
     region: ap-southeast-1
     on:
       branch: master
