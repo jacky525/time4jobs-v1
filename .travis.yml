@@ -64,21 +64,21 @@ before_deploy:
 deploy:
   # dev
   - provider: s3
-    access_key_id: &aws_access_key ${AWS_ACCESS_KEY_ID}
-    secret_access_key: &aws_secret_key ${AWS_SECRET_ACCESS_KEY}
+    access_key_id: ${AWS_ACCESS_KEY_ID}
+    secret_access_key: ${AWS_SECRET_ACCESS_KEY}
     bucket: ${DEPLOY_BUCKET_NAME}
     local_dir: myCodeDeploy
     skip_cleanup: true
-    region: &region ap-southeast-1
+    region: ap-southeast-1
     on:
       branch: master
 
   - provider: codedeploy
-    access_key_id: &aws_access_key ${AWS_ACCESS_KEY_ID}
-    secret_access_key: &aws_secret_key ${AWS_SECRET_ACCESS_KEY}
+    access_key_id: ${AWS_ACCESS_KEY_ID}
+    secret_access_key: ${AWS_SECRET_ACCESS_KEY}
     bucket: ${DEPLOY_BUCKET_NAME}
     key: latest.zip
-    application: "jtravis"
+    application: jtravis
     deployment_group: gdeploy
     region: ap-southeast-1
     on:
