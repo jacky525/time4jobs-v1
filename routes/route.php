@@ -42,7 +42,7 @@ $app->get(
             $my_apcucache_value = $apcucache->get('my_cache_key');
         }
         echo $my_apcucache_value;
-        echo "<br>=======<br>";
+        echo "<br>====ssssss===<br>";
 
         $filecache = $container->get(FilesystemCache::class);
 
