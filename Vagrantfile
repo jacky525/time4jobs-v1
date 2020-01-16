@@ -14,23 +14,25 @@ Vagrant.configure("2") do |config|
  DBPASSWD=ruser
 
   # Install
+  # Install dependencies
+  sudo LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php -y
   sudo apt-get update
   debconf-set-selections <<< "mysql-server mysql-server/root_password password $DBPASSWD"
   debconf-set-selections <<< "mysql-server mysql-server/root_password_again password $DBPASSWD"
 
 
-  sudo apt-get -y install zip unzip apache2 mysql-server php7.0 libapache2-mod-php7.0 sysv-rc-conf php-zip php-xml php-mbstring php7.0-curl php7.0-mysql php7.0-soap php7.0-opcache libapache2-mod-fastcgi php7.0-fpm
+  sudo apt-get -y install zip unzip apache2 mysql-server php7.2 libapache2-mod-php7.2 sysv-rc-conf php-zip php-xml php-mbstring php7.2-curl php7.2-mysql php7.2-soap php7.2-opcache libapache2-mod-fastcgi php7.2-fpm php7.2-apcu
   sudo add-apt-repository "deb http://ftp.de.debian.org/debian sid main"
   sudo apt-get update
 
   #sudo apt-get -y --allow-unauthenticated install php-apcu php-apcu-bc
   export DEBIAN_FRONTEND=noninteractive
-  sudo DEBIAN_FRONTEND=noninteractive apt-get -y --allow-unauthenticated install php7.0-dev
+  sudo DEBIAN_FRONTEND=noninteractive apt-get -y --allow-unauthenticated install php7.2-dev
   sudo apt-get -y --allow-unauthenticated install php-pear
   sudo pecl channel-update pecl.php.net
   sudo echo '' | pecl install apcu
-  echo "extension=apcu.so" >> /etc/php/7.0/mods-available/cache.ini
-  sudo ln -fs /etc/php/7.0/mods-available/cache.ini /etc/php/7.0/apache2/conf.d/25-cache.ini
+  sudo echo "extension=apcu.so" >> /etc/php/7.2/mods-available/cache.ini
+  sudo ln -fs /etc/php/7.2/mods-available/cache.ini /etc/php/7.2/apache2/conf.d/25-cache.ini
   sudo service apache2 reload
 
   # Setup Apache Settings Here

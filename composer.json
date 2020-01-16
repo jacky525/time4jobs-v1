@@ -1,7 +1,7 @@
 {
 	"name": "104corp/slim",
 	"require":{
-		"php": "^7.0",
+		"php": "^7.2",
 		"codeception/codeception": "^2.5",
 		"slim/twig-view": "^2.2",
 		"slim/slim": "^3.9.0",
