@@ -1,7 +1,7 @@
 <?php
 
 use Codeception\Util\HttpCode;
-use Slim\Controllers\TestController;
+use \Time4job\Controllers\TestController;
 
 class FuncCest
 {

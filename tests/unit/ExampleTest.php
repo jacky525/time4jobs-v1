@@ -1,6 +1,6 @@
 <?php
 use Psr\Container\ContainerInterface;
-use \Slim\Controllers\TestController;
+use \Time4job\Controllers\TestController;
 
 // 參照 https://codeception.com/docs/05-UnitTests
 /**
