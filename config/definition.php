@@ -20,7 +20,7 @@ $default = [
     'settings.determineRouteBeforeAppMiddleware' => false,
     \Slim\Views\Twig::class => function (ContainerInterface $c) {
         $twig = new \Slim\Views\Twig(
-            APP_ROOT .'/app/Templates',
+            APP_ROOT .'/src/Time4job/Templates',
             [
             'cache' => APP_ROOT .'/cache'
             ]
@@ -36,10 +36,10 @@ $default = [
         return $twig;
     },
     'TestController' => function (ContainerInterface $container) {
-        return new Slim\Controllers\TestController();
+        return new Time4job\Controllers\TestController();
     },
     'MainController' => function (ContainerInterface $container) {
-        return new Slim\Controllers\MainController($container);
+        return new Time4job\Controllers\MainController($container);
     },
     'logger' => function (ContainerInterface $container) {
         $filePath = APP_ROOT .'/log/'; //指定目錄

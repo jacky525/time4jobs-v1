@@ -23,10 +23,12 @@
     },
 	"autoload":{
 			"psr-4": {
-				"Slim\\":"app"
+				"My104\\":"src/My104",
+				"Time4job\\":"src/Time4job",
+				"Common\\":"src/Common"
 			},
 			"files": [
-				"app/Support/helpers.php"
+				"src/Common/Support/helpers.php"
 			]
 	},
 	"repositories": {

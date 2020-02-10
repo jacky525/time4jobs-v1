@@ -1,5 +1,5 @@
 <?php
-namespace Slim\Services;
+namespace Time4job\Services;
 
 /**
  * Class TestService

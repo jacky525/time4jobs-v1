@@ -1,8 +1,8 @@
 <?php
-namespace Slim\Controllers;
+namespace Time4job\Controllers;
 
 use Psr\SimpleCache\CacheInterface;
-use \Slim\Services\TestService;
+use \Time4job\Services\TestService;
 
 //use Illuminate\Support\Collection;
 
