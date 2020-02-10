@@ -21,7 +21,7 @@ $default = [
     'settings.determineRouteBeforeAppMiddleware' => false,
     \Slim\Views\Twig::class => function (ContainerInterface $c) {
         $twig = new \Slim\Views\Twig(
-            APP_ROOT .'/src/Time4job/Templates',
+            APP_ROOT .'/src/Time4job/views',
             [
             'cache' => APP_ROOT .'/cache'
             ]
