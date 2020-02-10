@@ -16,6 +16,8 @@ foreach ($connections as $connectionName => $setting) {
 $capsule->setAsGlobal();
 $capsule->bootEloquent();
 
-require APP_ROOT . '/routes/route.php';
+//route for Time4job
+require APP_ROOT . '/src/Time4job/route.php';
+
 // Run!
 $app->run();

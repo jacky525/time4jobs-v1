@@ -1,4 +1,5 @@
 <?php
+
 use \Psr\Container\ContainerInterface;
 use Noodlehaus\Config;
 use Psr\SimpleCache\CacheInterface;

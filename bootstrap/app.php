@@ -28,7 +28,7 @@ $app = new class() extends \DI\Bridge\Slim\App {
         }
 
         // Main definition
-        $builder->addDefinitions(APP_ROOT . '/config/definition.php');
+        $builder->addDefinitions(APP_ROOT . '/src/Time4job/definition.php');
     }
 };
 
