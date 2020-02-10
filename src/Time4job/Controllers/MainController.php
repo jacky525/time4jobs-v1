@@ -70,8 +70,16 @@ class MainController
         $authors = new \Slim\Collection([1,2,3]);
         echo $authors->get(2);
 
-        $response->getBody()->write("Hello, $name  <br> $result $aaa");
+        //$response->getBody()->write("Hello, $name  <br> $result");
+        //return $response;
 
-        return $response;
+        //這裡透過 user service 從cookie 取得 idno
+        $idno = "313774697013264584";
+        return $this->container->get('twig')->render(
+            $response,'home.twig',
+            [
+                'idno' => (int)$idno
+            ]
+        );
     }
 }

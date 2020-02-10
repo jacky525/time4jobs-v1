@@ -12,8 +12,10 @@
 		"illuminate/database": "<5.7",
 		"php-di/slim-bridge": "^2.0",
 		"104corp/jblog": "^0.10",
+		"104corp/support": "^1.1",
 		"symfony/cache": "^3.4",
-		"symfony/dotenv": "^3.4"
+		"symfony/dotenv": "^3.4",
+		"lcobucci/jwt": "^3.3"
 	},
     "require-dev": {
 		"squizlabs/php_codesniffer": "^2.8",
